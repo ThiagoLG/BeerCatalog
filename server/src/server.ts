@@ -1,5 +1,6 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors'
+import { userRoutes } from './routes/user';
 
 /**
  * Bootstrap function to initialize service
@@ -9,11 +10,7 @@ async function bootstrap() {
   const fastify = Fastify({ logger: true });
 
   //#region ENDPOINTS
-  fastify.get('/beers', (request) => {
-    return {
-      teste: 'teste'
-    }
-  })
+  await fastify.register(userRoutes);
   //#endregion
 
   //#region FASTIFY CONFIGS
