@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(cuid())
+  active   String  @default("yes")
+  name     String
+  email    String  @unique
+  authCode String
+  googleId String? @unique
+  avatar   Bytes?
+
+  UserCatalogs    UserCatalog[]
+  UserBeerReviews BeerReview[]
+}
+
+model BeerCraft {
+  id              Int     @id @default(autoincrement())
+  active          String  @default("yes")
+  name            String  @unique
+  countryOrigin   String?
+  additionalInfos String?
+  logo            Bytes?
+
+  BeerReviews BeerReview[]
+}
+
+model BeerStyle {
+  id          Int     @id @default(autoincrement())
+  style       String
+  description String?
+
+  BeerReviews BeerReview[]
+}
+
+model UserCatalog {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+  coverImage  Bytes?
+  ownerId     String
+
+  owner       User         @relation(fields: [ownerId], references: [id])
+  BeerReviews BeerReview[]
+}
+
+model BeerReview {
+  id                  Int       @id @default(autoincrement()) 
+  userId              String
+  userCatalogId       Int
+  reviewDate          DateTime  @default(now())
+  identificationImage Bytes
+  beerCraftId         Int
+  beerStyleId         Int
+  beerLabel           String
+  review              String
+  generalScore        Float
+  smellScore          Float
+  appearanceScore     Float
+  tasteScore          Float
+  sensationScore      Float
+  workSetScore        Float
+  drinkabilityScore   Float
+  SRM                 Int?
+  ABV                 Float?
+  IBU                 Int?
+  idealCup            String?
+  usedCup             String?
+  brewingDate         DateTime?
+  expirationDate      DateTime?
+  container           String?
+  containerVolumeMl   Int?
+  family              String?
+  temperatureCelsius  Float?
+  turbidity           String?
+  boughtPrice         Int?
+  boughtWhere         String?
+  boughtCurrency      String?
+  density             String?
+  harmonization       String?
+
+  user        User        @relation(fields: [userId], references: [id])
+  beerCraft   BeerCraft   @relation(fields: [beerCraftId], references: [id])
+  beerStyle   BeerStyle   @relation(fields: [beerStyleId], references: [id])
+  userCatalog UserCatalog @relation(fields: [userCatalogId], references: [id])
+}
