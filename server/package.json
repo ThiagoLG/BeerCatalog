@@ -1,0 +1,19 @@
+{
+  "name": "beer-catalog",
+  "version": "0.0.1",
+  "description": "Backend module to control database communication",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "author": "Thiago Lourençon Ghebra",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.9.4",
+    "tsx": "^3.12.1"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.2.0",
+    "fastify": "^4.10.2"
+  }
+}
