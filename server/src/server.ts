@@ -1,7 +1,7 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors'
 import { userRoutes } from './routes/user';
-import { beerCraftsRoutes } from './routes/beer-craft';
+import { breweriesRoutes } from './routes/brewery';
 
 /**
  * Bootstrap function to initialize service
@@ -12,7 +12,7 @@ async function bootstrap() {
 
   //#region ENDPOINTS
   await fastify.register(userRoutes);
-  await fastify.register(beerCraftsRoutes);
+  await fastify.register(breweriesRoutes);
   //#endregion
 
   //#region FASTIFY CONFIGS

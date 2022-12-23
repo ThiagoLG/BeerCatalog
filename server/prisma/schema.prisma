@@ -27,7 +27,7 @@ model User {
   UserBeerReviews BeerReview[]
 }
 
-model BeerCraft {
+model Brewery {
   id              Int     @id @default(autoincrement())
   active          Boolean
   name            String  @unique
@@ -63,7 +63,7 @@ model BeerReview {
   userCatalogId       Int
   reviewDate          DateTime  @default(now())
   identificationImage Bytes
-  beerCraftId         Int
+  breweryId         Int
   beerStyleId         Int
   beerLabel           String
   review              String
@@ -93,7 +93,7 @@ model BeerReview {
   harmonization       String?
 
   user        User        @relation(fields: [userId], references: [id])
-  beerCraft   BeerCraft   @relation(fields: [beerCraftId], references: [id])
+  brewery   Brewery   @relation(fields: [breweryId], references: [id])
   beerStyle   BeerStyle   @relation(fields: [beerStyleId], references: [id])
   userCatalog UserCatalog @relation(fields: [userCatalogId], references: [id])
 }
