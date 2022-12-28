@@ -1,0 +1,62 @@
+{
+  "en-US": {
+    "title": {
+      "create": "Nova Cervejaria",
+      "read": "Consultar Cervejarias",
+      "update": "Atualizar Cervejaria",
+      "delete": "Remover Cervejaria"
+    },
+    "form": {
+      "active": {
+        "title": "Ativo",
+        "description": "Utilize esta flag para determinar se este registro poderá ser utilizado em novas reviews de cervejas."
+      },
+      "name": {
+        "title": "Nome",
+        "description": "Nome da cervejaria do cadastro"
+      },
+      "countryOrigin": {
+        "title": "País de Origem",
+        "description": "País de origem da cervejaria"
+      },
+      "additionalInfos": {
+        "title": "Informações Adicionais",
+        "description": "Informações adicionais sobre a cervejaria."
+      },
+      "logo": {
+        "title": "Logotipo da Marca",
+        "description": "Logotipo da Marca."
+      }
+    }
+  },
+  "pt-BR": {
+    "title": {
+      "create": "Nova Cervejaria",
+      "read": "Consultar Cervejarias",
+      "update": "Atualizar Cervejaria",
+      "delete": "Remover Cervejaria"
+    },
+    "form": {
+      "active": {
+        "title": "Ativo",
+        "description": "Utilize esta flag para determinar se este registro poderá ser utilizado em novas reviews de cervejas."
+      },
+      "name": {
+        "title": "Nome",
+        "description": "Nome da cervejaria do cadastro"
+      },
+      "countryOrigin": {
+        "title": "País de Origem",
+        "description": "País de origem da cervejaria"
+      },
+      "additionalInfos": {
+        "title": "Informações Adicionais",
+        "description": "Informações adicionais sobre a cervejaria."
+      },
+      "logo": {
+        "title": "Logotipo da Marca",
+        "description": "Logotipo da Marca."
+      }
+    }
+  }
+}
