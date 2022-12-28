@@ -6,7 +6,7 @@ export default function Tooltip(props: TooltipProps) {
       {...props}
       arrow
       TransitionComponent={Zoom}
-      enterDelay={1000} leaveDelay={200}>
+      enterDelay={1000}>
       {props.children}
     </MUITooltip>
   )

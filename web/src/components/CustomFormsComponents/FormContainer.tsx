@@ -14,14 +14,20 @@ export default function FormContainer(prop: FormContainerProps) {
         maxWidth="sm"
         sx={{
           mt: 2,
-          p: 5,
-          boxSizing: "border-box"
+          p: 2,
+          boxSizing: "border-box",
+
         }}
         className={formStyles.formContainer}
       >
 
         {/* Page Title */}
-        <Grid container>
+        <Grid
+          container
+          sx={{
+            background: "#e1e1e1",
+            borderRadius: '60px 5px 5px 5px'
+          }}>
           {prop.customTitleNode ?
             prop.customTitleNode :
             <Grid lg={12}>

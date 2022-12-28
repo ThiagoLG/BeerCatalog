@@ -16,6 +16,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import { BreweryModel } from "../models/Brewery.model";
 import { ContryModel } from "../models/Country.model";
 import { LanguageTypes } from "../models/LanguageTypes.model";
+import InputFile from "../components/CustomFormsComponents/InputFile";
 //#endregion
 
 export default function InsertBreweryForm() {
@@ -113,13 +114,23 @@ export default function InsertBreweryForm() {
             </Tooltip>
           </div>
         </Grid>
+        {/* Upload Image Button */}
+        <Grid lg={12}>
+          <div className={styles.colored}>
+            <InputFile useCaptureButton />
+          </div>
+        </Grid>
         {/* Send Button */}
-        <Grid lg={12} textAlign="center" mt={4}>
+        <Grid lg={12} textAlign="center" mt={0}>
           <div className={styles.colored}>
 
             <Button
               variant="contained"
               endIcon={<SaveIcon />}
+              fullWidth
+              sx={{
+                borderRadius: '5px 5px 55px 5px'
+              }}
             >
               Save
             </Button>
