@@ -45,16 +45,15 @@ export default function InsertBreweryForm() {
         {/* Active Field */}
         <Grid lg={12}>
           <div className={styles.colored}>
-
             <FormGroup>
               <Tooltip title={pageStrings[currentLanguage].form.active.description}>
                 <FormControlLabel
                   control={<Switch checked={item.active} name="active" color="success" />}
                   label={pageStrings[currentLanguage].form.active.title}
+                  sx={{ m: "auto" }}
                 />
               </Tooltip>
             </FormGroup>
-
           </div>
         </Grid>
         {/* Name Field */}
@@ -115,7 +114,7 @@ export default function InsertBreweryForm() {
           </div>
         </Grid>
         {/* Send Button */}
-        <Grid lg={12} textAlign="center">
+        <Grid lg={12} textAlign="center" mt={4}>
           <div className={styles.colored}>
 
             <Button
