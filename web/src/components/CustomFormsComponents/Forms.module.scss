@@ -1,10 +1,14 @@
 .backdrop {
-  background: url('../../public/background_water_drops.png');
-
+  
   .formContainer {
     box-shadow: 3px 7px 18px 0px #4f5044;
     border-radius: 70px 10px 70px 10px;
     background: #ffffff57;
     backdrop-filter: blur(10px);
+
+    .gridItemRegion {
+      color: #666;
+      padding: 10px;
+    }
   }
 }
