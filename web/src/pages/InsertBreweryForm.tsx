@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { Grid, Switch, FormGroup, FormControlLabel, TextField, Autocomplete, Button, Box } from "@mui/material";
 import Image from "next/image";
+import InputFile from "../components/CustomFormsComponents/InputFile";
 import FormContainer from "../components/CustomFormsComponents/FormContainer";
 import Tooltip from "../components/CustomFormsComponents/Tooltip";
 /*- Services -*/
 import allCountries from "../data/countries.json";
+import { FormUtils } from "../services/FormUtils";
 import LanguageManager from "../services/LanguageManager";
 import pageStrings from "../../public/internationalization/BreweriesCrud.json";
 /*- Styles -*/
@@ -16,30 +18,49 @@ import SaveIcon from '@mui/icons-material/Save';
 import { BreweryModel } from "../models/Brewery.model";
 import { ContryModel } from "../models/Country.model";
 import { LanguageTypes } from "../models/LanguageTypes.model";
-import InputFile from "../components/CustomFormsComponents/InputFile";
+import { FieldTypesEnum } from "../enums/FieldTypes.enum";
 //#endregion
 
+
 export default function InsertBreweryForm() {
-  //#region STATES
+  //#region STATES - INSTANCES - VARIABLES
+  const formUtils = new FormUtils();
   const [currentLanguage, setCurrentLanguage] = useState<LanguageTypes>("pt-BR");
-  const [item, setItem] = useState<BreweryModel>({});
+  const [item, setItem] = useState<BreweryModel>(
+    {
+      active: false,
+      name: '',
+      additionalInfos: '',
+      countryOrigin: ''
+    });
   const [countries, setCountries] = useState<ContryModel[]>([]);
   //#endregion 
 
+
   //#region CONTROL LANGUAGE
+  /**
+   * Function responsible for getCurrent selected language and define page strings
+   */
   async function setLanguage() {
     setCurrentLanguage(new LanguageManager().getActiveLanguage());
   }
   //#endregion
 
+
   /*- Initial Actions -*/
   useEffect(() => {
     setLanguage();
     setCountries(allCountries[currentLanguage] as ContryModel[]);
-    console.log(countries);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
+
+  function sendItem() {
+    console.log('item: ', item);
+  }
+
+  
   return (
     <FormContainer formTitle={pageStrings[currentLanguage].title.create} useNavbar>
       <>
@@ -49,7 +70,11 @@ export default function InsertBreweryForm() {
             <FormGroup>
               <Tooltip title={pageStrings[currentLanguage].form.active.description}>
                 <FormControlLabel
-                  control={<Switch checked={item.active} name="active" color="success" />}
+                  control={<Switch checked={item.active}
+                    name="active"
+                    color="success"
+                    value={item.active}
+                    onChange={(e) => formUtils.getFieldValue(e, 'active', FieldTypesEnum.checkbox, setItem)} />}
                   label={pageStrings[currentLanguage].form.active.title}
                   sx={{ m: "auto" }}
                 />
@@ -66,6 +91,8 @@ export default function InsertBreweryForm() {
                 label={pageStrings[currentLanguage].form.name.title}
                 variant="standard"
                 fullWidth
+                value={item.name}
+                onChange={(e) => formUtils.getFieldValue(e, 'name', FieldTypesEnum.text, setItem)}
               />
             </Tooltip>
 
@@ -92,8 +119,14 @@ export default function InsertBreweryForm() {
                   </Box>
                 )}
                 renderInput={(params) => (
-                  <TextField {...params} label={pageStrings[currentLanguage].form.countryOrigin.title} variant="standard" />
+                  <TextField
+                    {...params}
+                    label={pageStrings[currentLanguage].form.countryOrigin.title}
+                    variant="standard"
+                    value={item.countryOrigin}
+                  />
                 )}
+                onChange={(e, newValue) => formUtils.getFieldValue(e, 'countryOrigin', FieldTypesEnum.autoComplete, setItem, newValue)}
               />
             </Tooltip>
 
@@ -110,6 +143,8 @@ export default function InsertBreweryForm() {
                 multiline
                 maxRows={6}
                 variant="standard"
+                value={item.additionalInfos}
+                onChange={(e) => formUtils.getFieldValue(e, 'additionalInfos', FieldTypesEnum.text, setItem)}
               />
             </Tooltip>
           </div>
@@ -117,7 +152,7 @@ export default function InsertBreweryForm() {
         {/* Upload Image Button */}
         <Grid lg={12}>
           <div className={styles.colored}>
-            <InputFile useCaptureButton />
+            <InputFile useCaptureButton showPreview />
           </div>
         </Grid>
         {/* Send Button */}
@@ -128,6 +163,7 @@ export default function InsertBreweryForm() {
               variant="contained"
               endIcon={<SaveIcon />}
               fullWidth
+              onClick={sendItem}
               sx={{
                 borderRadius: '5px 5px 55px 5px'
               }}

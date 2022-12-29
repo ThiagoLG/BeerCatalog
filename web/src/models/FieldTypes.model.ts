@@ -1,0 +1,1 @@
+export type FieldTypes = string | boolean | number | string[] | number[] | null | undefined;

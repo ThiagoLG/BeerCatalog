@@ -52,26 +52,30 @@ export default function InputFile(prop: InputFilePros) {
       </Box>
 
       {/* Image Preview */}
-      <Box className={`${styles.imagePreview} ${selectedFile?.name ? styles.expanded : null}`}>
-        <HighlightOffIcon className={styles.closeIcon} onClick={removeSelectedImage} />
-        <Image
-          alt={selectedFile?.name || ''}
-          src={selectedFile ? URL.createObjectURL(selectedFile) : ''}
-          width={150}
-          height={150}
-          style={{ opacity: selectedFile ? 1 : 0 }}
-        />
-      </Box>
+      {prop.showPreview ?
+        <Box className={`${styles.imagePreview} ${selectedFile?.name ? styles.expanded : null}`}>
+          <HighlightOffIcon className={styles.closeIcon} onClick={removeSelectedImage} />
+          <Image
+            alt={selectedFile?.name || ''}
+            src={selectedFile ? URL.createObjectURL(selectedFile) : ''}
+            width={150}
+            height={150}
+            style={{ opacity: selectedFile ? 1 : 0 }}
+          />
+        </Box>
+        : null}
 
       {/* Filename Preview */}
-      <Box className={`${styles.fileNamePreview} ${selectedFile?.name ? styles.expanded : null}`}>
+      {prop.showPreview ?
+        <Box className={`${styles.fileNamePreview} ${selectedFile?.name ? styles.expanded : null}`}>
 
-        <Typography variant="body1" fontWeight={700} textAlign="center" mt={0}>
-          {/* Selected File: <strong>{selectedFile?.name}</strong> */}
-          {selectedFile?.name}
-        </Typography>
+          <Typography variant="body1" fontWeight={700} textAlign="center" mt={0}>
+            {/* Selected File: <strong>{selectedFile?.name}</strong> */}
+            {selectedFile?.name}
+          </Typography>
 
-      </Box>
+        </Box>
+        : null}
 
     </Stack>
   )
