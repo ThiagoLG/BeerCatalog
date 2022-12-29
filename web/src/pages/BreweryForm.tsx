@@ -21,8 +21,7 @@ import { LanguageTypes } from "../models/LanguageTypes.model";
 import { FieldTypesEnum } from "../enums/FieldTypes.enum";
 //#endregion
 
-
-export default function InsertBreweryForm() {
+export default function BreweryForm() {
   //#region STATES - INSTANCES - VARIABLES
   const formUtils = new FormUtils();
   const [currentLanguage, setCurrentLanguage] = useState<LanguageTypes>("pt-BR");
@@ -47,25 +46,31 @@ export default function InsertBreweryForm() {
   //#endregion
 
 
-  /*- Initial Actions -*/
+  //#region INITIAL ACTIONS
   useEffect(() => {
     setLanguage();
     setCountries(allCountries[currentLanguage] as ContryModel[]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  //#endregion
 
 
-
+  //#region FORM ACTIONS
+  /**
+   * Function responsible for get state values and send to database
+   */
   function sendItem() {
     console.log('item: ', item);
   }
+  //#endregion
 
   
+  //#region COMPONENT RENDER
   return (
     <FormContainer formTitle={pageStrings[currentLanguage].title.create} useNavbar>
       <>
         {/* Active Field */}
-        <Grid lg={12}>
+        <Grid lg={12} item>
           <div className={styles.colored}>
             <FormGroup>
               <Tooltip title={pageStrings[currentLanguage].form.active.description}>
@@ -83,7 +88,7 @@ export default function InsertBreweryForm() {
           </div>
         </Grid>
         {/* Name Field */}
-        <Grid lg={7}>
+        <Grid lg={7} item>
           <div className={styles.colored}>
             <Tooltip title={pageStrings[currentLanguage].form.name.description}>
               <TextField
@@ -99,7 +104,7 @@ export default function InsertBreweryForm() {
           </div>
         </Grid>
         {/* Country field */}
-        <Grid lg={5}>
+        <Grid lg={5} item>
           <div className={styles.colored}>
             <Tooltip title={pageStrings[currentLanguage].form.countryOrigin.description}>
               <Autocomplete
@@ -133,7 +138,7 @@ export default function InsertBreweryForm() {
           </div>
         </Grid>
         {/* Additional Infos Field */}
-        <Grid lg={12}>
+        <Grid lg={12} item>
           <div className={styles.colored}>
             <Tooltip title={pageStrings[currentLanguage].form.additionalInfos.description}>
               <TextField
@@ -150,13 +155,13 @@ export default function InsertBreweryForm() {
           </div>
         </Grid>
         {/* Upload Image Button */}
-        <Grid lg={12}>
+        <Grid lg={12} item>
           <div className={styles.colored}>
             <InputFile useCaptureButton showPreview />
           </div>
         </Grid>
         {/* Send Button */}
-        <Grid lg={12} textAlign="center" mt={0}>
+        <Grid lg={12} textAlign="center" mt={0} item>
           <div className={styles.colored}>
 
             <Button
@@ -176,4 +181,5 @@ export default function InsertBreweryForm() {
       </>
     </FormContainer>
   )
+  //#endregion
 }

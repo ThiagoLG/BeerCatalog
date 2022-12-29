@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AppBar, Container, Toolbar, Typography, Box, IconButton, Tooltip, Avatar } from "@mui/material";
 import SportsBarIcon from '@mui/icons-material/SportsBar';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import styles from 'Navbar.module.scss';
+import PersonIcon from '@mui/icons-material/Person';
 
 export default function Navbar() {
 
@@ -44,7 +44,7 @@ export default function Navbar() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="User settings">
                 <IconButton sx={{ p: 0 }}>
-                  <Avatar alt="Test User" src="/static/images/avatar/2.jpg" />
+                  <PersonIcon />
                 </IconButton>
               </Tooltip>
             </Box>

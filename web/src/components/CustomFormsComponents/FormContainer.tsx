@@ -30,7 +30,7 @@ export default function FormContainer(prop: FormContainerProps) {
           }}>
           {prop.customTitleNode ?
             prop.customTitleNode :
-            <Grid lg={12}>
+            <Grid lg={12} item>
               <div className={formStyles.gridItemRegion}>
                 <Typography variant="h3" textAlign="center">
                   {prop.formTitle}
