@@ -1,30 +1,30 @@
 {
   "en-US": {
     "title": {
-      "create": "Nova Cervejaria",
-      "read": "Consultar Cervejarias",
-      "update": "Atualizar Cervejaria",
-      "delete": "Remover Cervejaria"
+      "create": "New Brewery",
+      "read": "Find Breweries",
+      "update": "Update Brewery",
+      "delete": "Delete Brewery"
     },
     "form": {
       "active": {
-        "title": "Ativo",
-        "description": "Utilize esta flag para determinar se este registro poderá ser utilizado em novas reviews de cervejas."
+        "title": "Active",
+        "description": "Use this flag to determine whether this record can be used in new beer reviews."
       },
       "name": {
-        "title": "Nome",
-        "description": "Nome da cervejaria do cadastro"
+        "title": "Name",
+        "description": "Registration brewery name."
       },
       "countryOrigin": {
-        "title": "País de Origem",
-        "description": "País de origem da cervejaria"
+        "title": "Conuntry Origin",
+        "description": "Brewery's country of origin."
       },
       "additionalInfos": {
-        "title": "Informações Adicionais",
-        "description": "Informações adicionais sobre a cervejaria."
+        "title": "Additional Infos",
+        "description": "Additional information about the brewery."
       },
       "logo": {
-        "title": "Logotipo da Marca",
+        "title": "Logo",
         "description": "Logotipo da Marca."
       }
     }
