@@ -9,14 +9,14 @@ generator erd {
   provider = "prisma-erd-generator"
 }
 
-datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+datasource db_beer_catalog {
+  provider          = "sqlserver"
+  url               = env("DATABASE_URL")
 }
 
 model User {
   id       String  @id @default(cuid())
-  active   Boolean  
+  active   Boolean
   name     String
   email    String  @unique
   authCode String
@@ -25,6 +25,8 @@ model User {
 
   UserCatalogs    UserCatalog[]
   UserBeerReviews BeerReview[]
+
+  @@map("users")
 }
 
 model Brewery {
@@ -58,12 +60,12 @@ model UserCatalog {
 }
 
 model BeerReview {
-  id                  Int       @id @default(autoincrement()) 
+  id                  Int       @id @default(autoincrement())
   userId              String
   userCatalogId       Int
   reviewDate          DateTime  @default(now())
   identificationImage Bytes
-  breweryId         Int
+  breweryId           Int
   beerStyleId         Int
   beerLabel           String
   review              String
@@ -92,8 +94,8 @@ model BeerReview {
   density             String?
   harmonization       String?
 
-  user        User        @relation(fields: [userId], references: [id])
-  brewery   Brewery   @relation(fields: [breweryId], references: [id])
+  user        User        @relation(fields: [userId], references: [id], onUpdate: NoAction)
+  brewery     Brewery     @relation(fields: [breweryId], references: [id])
   beerStyle   BeerStyle   @relation(fields: [beerStyleId], references: [id])
   userCatalog UserCatalog @relation(fields: [userCatalogId], references: [id])
 }

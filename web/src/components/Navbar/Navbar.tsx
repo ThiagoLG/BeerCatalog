@@ -4,6 +4,7 @@ import SportsBarIcon from '@mui/icons-material/SportsBar';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import PersonIcon from '@mui/icons-material/Person';
 import Tooltip from '../CustomFormsComponents/Tooltip';
+import LanguageController from '../LanguageController/LanguageController';
 
 export default function Navbar() {
 
@@ -12,9 +13,9 @@ export default function Navbar() {
       <AppBar position="static">
 
         <Container maxWidth="xl">
-          <Toolbar disableGutters sx={{ display:'flex', flexDirection: "row", justifyContent: 'space-between' }}>
+          <Toolbar disableGutters sx={{ display: 'flex', flexDirection: "row", justifyContent: 'space-between' }}>
 
-            <Box sx={{ display:'flex', flexDirection: "row", alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', flexDirection: "row", alignItems: 'center' }}>
 
               {/* Icon */}
               <SportsBarIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -42,10 +43,18 @@ export default function Navbar() {
             </Box>
 
 
-            <Box sx={{ display:'flex', flexDirection: "row", alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', flexDirection: "row", alignItems: 'center' }}>
 
+              {/* Language Control */}
+              <Box>
+                <Tooltip title="Change Language">
+                  <IconButton sx={{ p: 2 }}>
+                    <LanguageController />
+                  </IconButton>
+                </Tooltip>
+              </Box>
               {/* Theme control */}
-              <Box sx={{ flexGrow: 1 }}>
+              <Box>
                 <Tooltip title="Change theme">
                   <IconButton sx={{ p: 2 }}>
                     <Brightness7Icon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -55,7 +64,7 @@ export default function Navbar() {
 
 
               {/* User Settings */}
-              <Box sx={{ flexGrow: 0 }}>
+              <Box>
                 <Tooltip title="User settings">
                   <IconButton sx={{ p: 0 }}>
                     <PersonIcon />
